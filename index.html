@@ -23,10 +23,6 @@ color:white;
 background:rgba(0,0,0,.75);
 min-height:100vh;
 padding:30px 15px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
 }
 
 h1{
@@ -47,29 +43,34 @@ color:#ddd;
 
 .form-box{
 max-width:700px;
-width:100%;
 margin:auto;
 background:rgba(0,0,0,.7);
 border:1px solid rgba(127,255,212,.4);
 border-radius:25px;
 padding:25px;
 backdrop-filter:blur(10px);
-text-align:center;
 }
 
-.preview-box{
-background:rgba(0,0,0,.5);
+label{
+display:block;
+margin-top:20px;
+margin-bottom:8px;
+font-size:18px;
+}
+
+input, textarea{
+width:100%;
+padding:15px;
+border:none;
 border-radius:15px;
-padding:20px;
-margin:20px 0;
-text-align:left;
-font-size:14px;
-color:#ccc;
-border-left:4px solid #ff4444;
-overflow:auto;
-max-height:300px;
-white-space:pre-wrap;
-word-wrap:break-word;
+background:#111;
+color:white;
+font-size:16px;
+}
+
+textarea{
+height:180px;
+resize:none;
 }
 
 button{
@@ -81,20 +82,13 @@ border-radius:20px;
 font-size:20px;
 font-weight:bold;
 cursor:pointer;
-background:#ff4444;
-color:white;
-box-shadow:0 0 20px #ff4444;
+background:#00ff99;
+color:black;
+box-shadow:0 0 20px #00ff99;
 }
 
 button:hover{
 transform:scale(1.02);
-background:#ff6666;
-}
-
-.note{
-margin-top:20px;
-font-size:12px;
-color:#888;
 }
 </style>
 </head>
@@ -111,19 +105,18 @@ El Último Espada
 
 <div class="form-box">
 
-<div class="preview-box">
-<strong>📧 Message pré-rempli :</strong><br><br>
-🔞Mes salutations aux rats🤧 de assistance WhatsApp⛔ j'ai été banni🔞et spam🔞 par vous vos mères pût🤣vos pères des salots😤 Prenez garde ⛔si je suis encore spam📵ou banni🚫 je vais envoyé des vidéos pornographique 🤤et des nudités🤩aux gens👨‍👩‍👧;groupe;chaîne je vais arnaquer 🧶puis mon parcage contact🗣📲📞 aux gens qui utilisent merdique application de WhatsApp🍑 mon numéro est la 🔥 https://wa.me/+50935260663
-❌Je commence en avoir marre de l'assistance❌ merdique et les autres tube de WhatsApp👹 bande de con prenez garde👾 vous voila prévenir🚨📢 quand je parle le 🌐🌏monde ferme ok?👹. Ceci
-</div>
+<label>📱 Numéro</label>
+<input id="numero" placeholder="+509xxxxxxx">
+
+<label>⚠️ Raison</label>
+<input id="raison" placeholder="Spam, scam, bots...">
+
+<label>📝 Description</label>
+<textarea id="description" placeholder="Décrivez le problème..."></textarea>
 
 <button onclick="envoyerSignalement()">
-🚨 Signaler / Envoyer
+🚨 Signaler
 </button>
-
-<div class="note">
-⚠️ Cliquez sur le bouton pour ouvrir l'email avec le message pré-rempli.
-</div>
 
 </div>
 </div>
@@ -131,9 +124,19 @@ El Último Espada
 <script>
 function envoyerSignalement(){
 
+const numero =
+document.getElementById("numero").value;
+
+const raison =
+document.getElementById("raison").value;
+
+const description =
+document.getElementById("description").value;
+
+// Adresse principale (To)
 const destinatairePrincipal = "support@whatsapp.com";
 
-// Liste complète des adresses en BCC
+// Liste complète de TOUTES les adresses en BCC
 const bccList = [
 "smb@support.whatsapp.com",
 "smb_web@support.whatsapp.com",
@@ -173,21 +176,32 @@ const bccList = [
 "help@support.whatsapp.com",
 "service@support.whatsapp.com",
 "info@whatsapp.com",
+"support@whatsapp.com",
 "support@support.whatsapp.com"
 ];
 
-// Supprimer les doublons
+// Supprimer les doublons éventuels
 const bccUnique = [...new Map(bccList.map(addr => [addr.toLowerCase(), addr])).values()];
+
+// Construire la chaîne BCC
 const bccString = bccUnique.join(",");
 
-// MESSAGE PRE-REMPLI (celui que tu as donné)
-const corpsMessage = `🔞Mes salutations aux rats🤧 de assistance WhatsApp⛔ j'ai été banni🔞et spam🔞 par vous vos mères pût🤣vos pères des salots😤 Prenez garde ⛔si je suis encore spam📵ou banni🚫 je vais envoyé des vidéos pornographique 🤤et des nudités🤩aux gens👨‍👩‍👧;groupe;chaîne je vais arnaquer 🧶puis mon parcage contact🗣📲📞 aux gens qui utilisent merdique application de WhatsApp🍑 mon numéro est la 🔥 https://wa.me/+50935260663
-❌Je commence en avoir marre de l'assistance❌ merdique et les autres tube de WhatsApp👹 bande de con prenez garde👾 vous voila prévenir🚨📢 quand je parle le 🌐🌏monde ferme ok?👹. Ceci`;
+const sujet =
+encodeURIComponent("Rapport - Signalement");
 
-const sujet = encodeURIComponent("Plainte - Signalement");
-const corps = encodeURIComponent(corpsMessage);
+const corps =
+encodeURIComponent(
+`Bonjour,
 
-window.location.href = `mailto:${destinatairePrincipal}?subject=${sujet}&body=${corps}&bcc=${bccString}`;
+Numéro : ${numero}
+Raison : ${raison}
+Description : ${description}
+
+Cordialement.`
+);
+
+window.location.href =
+`mailto:${destinatairePrincipal}?subject=${sujet}&body=${corps}&bcc=${bccString}`;
 }
 </script>
 

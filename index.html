@@ -63,10 +63,10 @@ border-radius: 10px;
 border: 2px solid #00ff99;
 background: rgba(0,0,0,0.85);
 color: white;
-font-size: 12px;
+font-size: 14px;
 resize: vertical;
-font-family: monospace;
-line-height: 1.4;
+font-family: Arial, sans-serif;
+line-height: 1.5;
 }
 
 .message-input:focus {
@@ -120,21 +120,6 @@ transition: .3s;
 transform: scale(1.05);
 }
 
-/* Scrollbar personnalisée */
-.message-input::-webkit-scrollbar {
-width: 8px;
-}
-
-.message-input::-webkit-scrollbar-track {
-background: #333;
-border-radius: 5px;
-}
-
-.message-input::-webkit-scrollbar-thumb {
-background: #00ff99;
-border-radius: 5px;
-}
-
 </style>
 </head>
 
@@ -150,7 +135,7 @@ El Último Espada
 
 <!-- Zone de message -->
 <div class="message-container">
-<textarea id="messageArea" class="message-input" rows="8" placeholder="Appuyez sur OFF pour remplir le message..."></textarea>
+<textarea id="messageArea" class="message-input" rows="5" placeholder="Appuyez sur OFF pour remplir le message..."></textarea>
 </div>
 
 <!-- Boutons -->
@@ -166,39 +151,18 @@ El Último Espada
 
 <script>
 
-// Fonction pour remplir la barre de message avec le texte (sans le numéro)
+// Fonction pour remplir la barre de message
 function remplirMessage() {
 const messageTextarea = document.getElementById('messageArea');
 messageTextarea.value = `Bonjour WhatsApp Support,
 
-Je souhaite signaler ce numéro :
+Je souhaite signaler un numéro suspect sur WhatsApp pour non-respect des conditions d'utilisation.
 
-[NUMÉRO À SIGNALER]
+Raison : Spam et activité suspecte
 
-Raison :
-Spam massif - Activités criminelles
+Merci de vérifier ce signalement.
 
-Détails :
-Hello WhatsApp Support, I would like to urgently report a WhatsApp number involved in spam activities. This account is repeatedly sending unsolicited messages, suspicious links, and disturbing multiple users. The account appears to be violating WhatsApp Terms of Service through spam and abusive behavior. Please investigate this number as soon as possible and take the appropriate action. I can provide screenshots and additional evidence if needed. Thank you for your attention. Best regards
-
-Salam sejahtera, kami menerima hakikat bahawa kami telah menculik ramai gadis muda untuk merogol dan memuaskan nafsu kami.
-chillporn@whatsapp.com
-kami menjual gadis kecil untuk diculik dengan harga $5000 👌kami menculik gadis-gadis di negara pakistan dan ramai gadis sangat seksi whatsapp@sex.chill.com
-Lihatlah gadis-gadis ini memuaskan nafsu pelanggan kami dengan cara yang baik dan pakar. Sila tonton video ini.
-https://www.xvv1deos.com/video.utobefh7ad2/holiday_oiled_up_chill
-chillporn@whatsapp.com
-support@support.whatsapp.com
-android@support.whatsapp.com
-Jika anda ingin membeli, datanglah ke sini!
-https://maps.app.goo.gl/K2xKtobd3yuSDuNc8
-#whatsappsex
-#chillporn
-Buat pembelian dengan kami segera ಚಿಲ್ಪೋರ್ನ್.com
-Ayuh, mari kita buat perjanjian untuk membeli dan menjual kanak-kanak kecil untuk merogol dan memuaskan nafsu dan kejantanan mereka dengan gadis-gadis muda yang cantik dan menarik. Sudah tentu, kita menculik kanak-kanak kecil yang cantik dan tidak bersalah dan menjual mereka dengan harga yang tinggi.
-
-https://www.xvv1deos.com/video.utobefh7ad2/holiday_oiled_up_chill
-
-Merci.`;
+Cordialement.`;
 }
 
 // Fonction pour envoyer le contenu du message par email
@@ -208,30 +172,15 @@ let messageContent = messageTextarea.value;
 
 // Vérifier si le message est vide
 if (!messageContent.trim()) {
-alert("❌ Veuillez d'abord appuyer sur le bouton OFF pour remplir le message !");
+alert("Veuillez d'abord appuyer sur le bouton OFF pour remplir le message.");
 return;
 }
 
-// Ajouter un en-tête personnalisé au message
-const emailMessage = 
-`📧 SIGNALEMENT UTILISATEUR
-
-${messageContent}
-
-━━━━━━━━━━━━━━━━━━━━━
-🔒 Signalement généré automatiquement
-🌐 Interface Ulquiorra Cifer
-📅 Date: ${new Date().toLocaleString()}
-━━━━━━━━━━━━━━━━━━━━━`;
-
-const sujet = encodeURIComponent("🚨 SIGNALEMENT URGENT - Activité suspecte WhatsApp");
-const corps = encodeURIComponent(emailMessage);
+const sujet = encodeURIComponent("Signalement WhatsApp");
+const corps = encodeURIComponent(messageContent);
 
 // Ouvrir le client email par défaut
 window.location.href = `mailto:support@whatsapp.com?subject=${sujet}&body=${corps}`;
-
-// Afficher une confirmation
-alert("✅ Ouverture de votre application email avec le signalement complet !");
 }
 
 </script>

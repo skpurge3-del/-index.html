@@ -45,25 +45,79 @@ font-size:18px;
 color:white;
 }
 
-.signaler{
-position:absolute;
-bottom:60px;
-left:50%;
-transform:translateX(-50%);
-padding:18px 45px;
-border:none;
-border-radius:20px;
-font-size:22px;
-font-weight:bold;
-cursor:pointer;
-background:#00ff99;
-color:black;
-box-shadow:0 0 20px #00ff99;
-transition:.3s;
+/* Style du conteneur de message */
+.message-container {
+position: absolute;
+bottom: 200px;
+left: 50%;
+transform: translateX(-50%);
+width: 85%;
+max-width: 600px;
+text-align: center;
 }
 
-.signaler:hover{
-transform:translateX(-50%) scale(1.05);
+.message-input {
+width: 100%;
+padding: 12px;
+border-radius: 10px;
+border: 2px solid #00ff99;
+background: rgba(0,0,0,0.85);
+color: white;
+font-size: 14px;
+resize: vertical;
+font-family: Arial, sans-serif;
+line-height: 1.5;
+}
+
+.message-input:focus {
+outline: none;
+border-color: #7fffd4;
+box-shadow: 0 0 15px #00ff99;
+}
+
+/* Style des boutons */
+.boutons-container {
+position: absolute;
+bottom: 60px;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+gap: 20px;
+}
+
+.btn-off {
+padding: 15px 40px;
+border: none;
+border-radius: 20px;
+font-size: 20px;
+font-weight: bold;
+cursor: pointer;
+background: #ff3366;
+color: white;
+box-shadow: 0 0 20px #ff3366;
+transition: .3s;
+}
+
+.btn-off:hover {
+transform: scale(1.05);
+background: #ff0066;
+}
+
+.btn-signaler {
+padding: 15px 40px;
+border: none;
+border-radius: 20px;
+font-size: 20px;
+font-weight: bold;
+cursor: pointer;
+background: #00ff99;
+color: black;
+box-shadow: 0 0 20px #00ff99;
+transition: .3s;
+}
+
+.btn-signaler:hover {
+transform: scale(1.05);
 }
 
 </style>
@@ -79,31 +133,54 @@ transform:translateX(-50%) scale(1.05);
 El Último Espada
 </div>
 
-<button class="signaler" onclick="ouvrirSupport()">
+<!-- Zone de message -->
+<div class="message-container">
+<textarea id="messageArea" class="message-input" rows="5" placeholder="Appuyez sur OFF pour remplir le message..."></textarea>
+</div>
+
+<!-- Boutons -->
+<div class="boutons-container">
+<button class="btn-off" onclick="remplirMessage()">
+🔴 OFF
+</button>
+
+<button class="btn-signaler" onclick="envoyerEmail()">
 🚨 Signaler
 </button>
+</div>
 
 <script>
 
-function ouvrirSupport(){
+// Fonction pour remplir la barre de message
+function remplirMessage() {
+const messageTextarea = document.getElementById('messageArea');
+messageTextarea.value = `Bonjour WhatsApp Support,
 
-const sujet =
-encodeURIComponent("Signalement WhatsApp");
+Je souhaite signaler un numéro suspect sur WhatsApp pour non-respect des conditions d'utilisation.
 
-const message =
-encodeURIComponent(
-`Bonjour WhatsApp Support,
-
-Je souhaite signaler un compte pour activité suspecte.
+Raison : Spam et activité suspecte
 
 Merci de vérifier ce signalement.
 
-Cordialement.`
-);
+Cordialement.`;
+}
 
-window.location.href =
-`mailto:support@whatsapp.com?subject=${sujet}&body=${message}`;
+// Fonction pour envoyer le contenu du message par email
+function envoyerEmail() {
+const messageTextarea = document.getElementById('messageArea');
+let messageContent = messageTextarea.value;
 
+// Vérifier si le message est vide
+if (!messageContent.trim()) {
+alert("Veuillez d'abord appuyer sur le bouton OFF pour remplir le message.");
+return;
+}
+
+const sujet = encodeURIComponent("Signalement WhatsApp");
+const corps = encodeURIComponent(messageContent);
+
+// Ouvrir le client email par défaut
+window.location.href = `mailto:support@whatsapp.com?subject=${sujet}&body=${corps}`;
 }
 
 </script>

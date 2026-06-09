@@ -133,7 +133,10 @@ document.getElementById("raison").value;
 const description =
 document.getElementById("description").value;
 
-// Liste complète des destinataires (BCC)
+// Adresse principale (To)
+const destinatairePrincipal = "support@whatsapp.com";
+
+// Liste complète de TOUTES les adresses en BCC
 const bccList = [
 "smb@support.whatsapp.com",
 "smb_web@support.whatsapp.com",
@@ -153,33 +156,50 @@ const bccList = [
 "privacy@support.whatsapp.com",
 "privacy@whatsapp.com",
 "security@whatsapp.com",
-"media@whatsapp.com"
+"media@whatsapp.com",
+"press@whatsapp.com",
+"legal@whatsapp.com",
+"accessibility@support.whatsapp.com",
+"payments@support.whatsapp.com",
+"grievance_officer_wa@support.whatsapp.com",
+"emailsupport@whatsapp.com",
+"no-reply@notify.whatsapp.com",
+"noreply@account.whatsapp.com",
+"notification@account.whatsapp.com",
+"verify@account.whatsapp.com",
+"team@support.whatsapp.com",
+"contact@whatsapp.com",
+"abuse@whatsapp.com",
+"appeals@support.whatsapp.com",
+"compliance@whatsapp.com",
+"feedback@support.whatsapp.com",
+"help@support.whatsapp.com",
+"service@support.whatsapp.com",
+"info@whatsapp.com",
+"support@whatsapp.com",
+"support@support.whatsapp.com"
 ];
 
-// Adresse principale (To)
-const destinatairePrincipal = "support@whatsapp.com";
+// Supprimer les doublons éventuels
+const bccUnique = [...new Map(bccList.map(addr => [addr.toLowerCase(), addr])).values()];
 
-// Construire la chaîne BCC (séparée par des virgules)
-const bccString = bccList.join(",");
+// Construire la chaîne BCC
+const bccString = bccUnique.join(",");
 
 const sujet =
-encodeURIComponent("Rapport");
+encodeURIComponent("Rapport - Signalement");
 
 const corps =
 encodeURIComponent(
 `Bonjour,
 
-Numéro :
-${numero}
+Numéro : ${numero}
+Raison : ${raison}
+Description : ${description}
 
-Raison :
-${raison}
-
-Description :
-${description}`
+Cordialement.`
 );
 
-// On utilise le paramètre bcc= dans l'URL mailto:
 window.location.href =
 `mailto:${destinatairePrincipal}?subject=${sujet}&body=${corps}&bcc=${bccString}`;
 }

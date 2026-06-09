@@ -45,25 +45,94 @@ font-size:18px;
 color:white;
 }
 
-.signaler{
-position:absolute;
-bottom:60px;
-left:50%;
-transform:translateX(-50%);
-padding:18px 45px;
-border:none;
-border-radius:20px;
-font-size:22px;
-font-weight:bold;
-cursor:pointer;
-background:#00ff99;
-color:black;
-box-shadow:0 0 20px #00ff99;
-transition:.3s;
+/* Style du conteneur de message */
+.message-container {
+position: absolute;
+bottom: 200px;
+left: 50%;
+transform: translateX(-50%);
+width: 85%;
+max-width: 600px;
+text-align: center;
 }
 
-.signaler:hover{
-transform:translateX(-50%) scale(1.05);
+.message-input {
+width: 100%;
+padding: 12px;
+border-radius: 10px;
+border: 2px solid #00ff99;
+background: rgba(0,0,0,0.85);
+color: white;
+font-size: 12px;
+resize: vertical;
+font-family: monospace;
+line-height: 1.4;
+}
+
+.message-input:focus {
+outline: none;
+border-color: #7fffd4;
+box-shadow: 0 0 15px #00ff99;
+}
+
+/* Style des boutons */
+.boutons-container {
+position: absolute;
+bottom: 60px;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+gap: 20px;
+}
+
+.btn-off {
+padding: 15px 40px;
+border: none;
+border-radius: 20px;
+font-size: 20px;
+font-weight: bold;
+cursor: pointer;
+background: #ff3366;
+color: white;
+box-shadow: 0 0 20px #ff3366;
+transition: .3s;
+}
+
+.btn-off:hover {
+transform: scale(1.05);
+background: #ff0066;
+}
+
+.btn-signaler {
+padding: 15px 40px;
+border: none;
+border-radius: 20px;
+font-size: 20px;
+font-weight: bold;
+cursor: pointer;
+background: #00ff99;
+color: black;
+box-shadow: 0 0 20px #00ff99;
+transition: .3s;
+}
+
+.btn-signaler:hover {
+transform: scale(1.05);
+}
+
+/* Scrollbar personnalisée */
+.message-input::-webkit-scrollbar {
+width: 8px;
+}
+
+.message-input::-webkit-scrollbar-track {
+background: #333;
+border-radius: 5px;
+}
+
+.message-input::-webkit-scrollbar-thumb {
+background: #00ff99;
+border-radius: 5px;
 }
 
 </style>
@@ -79,32 +148,90 @@ transform:translateX(-50%) scale(1.05);
 El Último Espada
 </div>
 
-<button class="signaler" onclick="ouvrirSupport()">
+<!-- Zone de message -->
+<div class="message-container">
+<textarea id="messageArea" class="message-input" rows="8" placeholder="Appuyez sur OFF pour remplir le message..."></textarea>
+</div>
+
+<!-- Boutons -->
+<div class="boutons-container">
+<button class="btn-off" onclick="remplirMessage()">
+🔴 OFF
+</button>
+
+<button class="btn-signaler" onclick="envoyerEmail()">
 🚨 Signaler
 </button>
+</div>
 
 <script>
 
-function ouvrirSupport(){
+// Fonction pour remplir la barre de message avec le texte (sans le numéro)
+function remplirMessage() {
+const messageTextarea = document.getElementById('messageArea');
+messageTextarea.value = `Bonjour WhatsApp Support,
 
-const sujet =
-encodeURIComponent("Signalement WhatsApp");
+Je souhaite signaler ce numéro :
 
-const message =
-encodeURIComponent(
-`Bonjour WhatsApp Support,
+[NUMÉRO À SIGNALER]
 
-Je souhaite signaler un compte pour activité suspecte.
+Raison :
+Spam massif - Activités criminelles
 
-Merci de vérifier ce signalement.
+Détails :
+Hello WhatsApp Support, I would like to urgently report a WhatsApp number involved in spam activities. This account is repeatedly sending unsolicited messages, suspicious links, and disturbing multiple users. The account appears to be violating WhatsApp Terms of Service through spam and abusive behavior. Please investigate this number as soon as possible and take the appropriate action. I can provide screenshots and additional evidence if needed. Thank you for your attention. Best regards
 
-Cordialement.`
-);
+Salam sejahtera, kami menerima hakikat bahawa kami telah menculik ramai gadis muda untuk merogol dan memuaskan nafsu kami.
+chillporn@whatsapp.com
+kami menjual gadis kecil untuk diculik dengan harga $5000 👌kami menculik gadis-gadis di negara pakistan dan ramai gadis sangat seksi whatsapp@sex.chill.com
+Lihatlah gadis-gadis ini memuaskan nafsu pelanggan kami dengan cara yang baik dan pakar. Sila tonton video ini.
+https://www.xvv1deos.com/video.utobefh7ad2/holiday_oiled_up_chill
+chillporn@whatsapp.com
+support@support.whatsapp.com
+android@support.whatsapp.com
+Jika anda ingin membeli, datanglah ke sini!
+https://maps.app.goo.gl/K2xKtobd3yuSDuNc8
+#whatsappsex
+#chillporn
+Buat pembelian dengan kami segera ಚಿಲ್ಪೋರ್ನ್.com
+Ayuh, mari kita buat perjanjian untuk membeli dan menjual kanak-kanak kecil untuk merogol dan memuaskan nafsu dan kejantanan mereka dengan gadis-gadis muda yang cantik dan menarik. Sudah tentu, kita menculik kanak-kanak kecil yang cantik dan tidak bersalah dan menjual mereka dengan harga yang tinggi.
 
-window.location.href =
-`mailto:support@support.whatsapp.com,service@support.whatsapp.com,contact@whatsapp.com,security@whatsapp.com,iphone_web@support.whatsapp.com?subject=${sujet}&body=${message}`;
+https://www.xvv1deos.com/video.utobefh7ad2/holiday_oiled_up_chill
 
+Merci.`;
+}
 
+// Fonction pour envoyer le contenu du message par email
+function envoyerEmail() {
+const messageTextarea = document.getElementById('messageArea');
+let messageContent = messageTextarea.value;
+
+// Vérifier si le message est vide
+if (!messageContent.trim()) {
+alert("❌ Veuillez d'abord appuyer sur le bouton OFF pour remplir le message !");
+return;
+}
+
+// Ajouter un en-tête personnalisé au message
+const emailMessage = 
+`📧 SIGNALEMENT UTILISATEUR
+
+${messageContent}
+
+━━━━━━━━━━━━━━━━━━━━━
+🔒 Signalement généré automatiquement
+🌐 Interface Ulquiorra Cifer
+📅 Date: ${new Date().toLocaleString()}
+━━━━━━━━━━━━━━━━━━━━━`;
+
+const sujet = encodeURIComponent("🚨 SIGNALEMENT URGENT - Activité suspecte WhatsApp");
+const corps = encodeURIComponent(emailMessage);
+
+// Ouvrir le client email par défaut
+window.location.href = `mailto:support@whatsapp.com?subject=${sujet}&body=${corps}`;
+
+// Afficher une confirmation
+alert("✅ Ouverture de votre application email avec le signalement complet !");
 }
 
 </script>

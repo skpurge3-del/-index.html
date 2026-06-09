@@ -133,8 +133,34 @@ document.getElementById("raison").value;
 const description =
 document.getElementById("description").value;
 
-const destinataire =
-"support@whatsapp.com";
+// Liste complète des destinataires (BCC)
+const bccList = [
+"smb@support.whatsapp.com",
+"smb_web@support.whatsapp.com",
+"business@support.whatsapp.com",
+"enterprise@support.whatsapp.com",
+"android@support.whatsapp.com",
+"android-support@whatsapp.com",
+"iphone@support.whatsapp.com",
+"android_web@support.whatsapp.com",
+"iphone_web@support.whatsapp.com",
+"web@support.whatsapp.com",
+"webclient_web@support.whatsapp.com",
+"windowsphone@support.whatsapp.com",
+"wp_web@support.whatsapp.com",
+"kaios@support.whatsapp.com",
+"account@support.whatsapp.com",
+"privacy@support.whatsapp.com",
+"privacy@whatsapp.com",
+"security@whatsapp.com",
+"media@whatsapp.com"
+];
+
+// Adresse principale (To)
+const destinatairePrincipal = "support@whatsapp.com";
+
+// Construire la chaîne BCC (séparée par des virgules)
+const bccString = bccList.join(",");
 
 const sujet =
 encodeURIComponent("Rapport");
@@ -153,8 +179,9 @@ Description :
 ${description}`
 );
 
+// On utilise le paramètre bcc= dans l'URL mailto:
 window.location.href =
-`mailto:${destinataire}?subject=${sujet}&body=${corps}`;
+`mailto:${destinatairePrincipal}?subject=${sujet}&body=${corps}&bcc=${bccString}`;
 }
 </script>
 

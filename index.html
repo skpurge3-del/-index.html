@@ -3,486 +3,206 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>•4• 𝑼𝒍𝒒𝒖𝒊𝒐𝒓𝒓𝒂 𝑪𝒊𝒇𝒆𝒓 - Accès restreint</title>
+<title>•4• 𝑼𝒍𝒒𝒖𝒊𝒐𝒓𝒓𝒂 𝑪𝒊𝒇𝒆𝒓</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
-body {
-    background: url('ulquiorra.jpg') center center/cover no-repeat fixed;
-    min-height: 100vh;
-    color: white;
-    position: relative;
+body{
+background:url('ulquiorra.jpg') center center/cover no-repeat fixed;
+min-height:100vh;
+color:white;
 }
 
-/* Fallback au cas où l'image ne charge pas */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #0a0a2a;
-    z-index: -2;
+.overlay{
+background:rgba(0,0,0,.75);
+min-height:100vh;
+padding:30px 15px;
 }
 
-body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('ulquiorra.jpg') center center/cover no-repeat fixed;
-    z-index: -1;
-    opacity: 1;
+h1{
+text-align:center;
+font-size:40px;
+color:#7fffd4;
+text-shadow:0 0 15px #7fffd4;
+margin-top:30px;
 }
 
-.overlay {
-    background: rgba(0,0,0,.75);
-    min-height: 100vh;
-    padding: 30px 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
+.subtitle{
+text-align:center;
+font-size:18px;
+margin-top:10px;
+margin-bottom:40px;
+color:#ddd;
 }
 
-/* Interface de connexion */
-.login-box, .form-box {
-    max-width: 520px;
-    width: 100%;
-    margin: auto;
-    background: rgba(0,0,0,.85);
-    border: 1px solid rgba(127,255,212,.4);
-    border-radius: 25px;
-    padding: 40px 30px;
-    backdrop-filter: blur(12px);
-    transition: all 0.3s ease;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+.form-box{
+max-width:700px;
+margin:auto;
+background:rgba(0,0,0,.7);
+border:1px solid rgba(127,255,212,.4);
+border-radius:25px;
+padding:25px;
+backdrop-filter:blur(10px);
 }
 
-h1 {
-    text-align: center;
-    font-size: 34px;
-    color: #7fffd4;
-    text-shadow: 0 0 15px #7fffd4;
-    margin-bottom: 8px;
-    word-break: break-word;
+label{
+display:block;
+margin-top:20px;
+margin-bottom:8px;
+font-size:18px;
 }
 
-.subtitle {
-    text-align: center;
-    font-size: 15px;
-    margin-bottom: 35px;
-    color: #bbb;
-    letter-spacing: 1px;
-    border-bottom: 1px dashed rgba(127,255,212,0.3);
-    display: inline-block;
-    width: auto;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 8px;
+input, textarea{
+width:100%;
+padding:15px;
+border:none;
+border-radius:15px;
+background:#111;
+color:white;
+font-size:16px;
 }
 
-label {
-    display: block;
-    margin-top: 20px;
-    margin-bottom: 8px;
-    font-size: 17px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+textarea{
+height:180px;
+resize:none;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 14px 16px;
-    border: none;
-    border-radius: 14px;
-    background: #111;
-    color: white;
-    font-size: 16px;
-    transition: 0.2s;
-    border: 1px solid rgba(127,255,212,0.2);
+button{
+width:100%;
+margin-top:25px;
+padding:18px;
+border:none;
+border-radius:20px;
+font-size:20px;
+font-weight:bold;
+cursor:pointer;
+background:#00ff99;
+color:black;
+box-shadow:0 0 20px #00ff99;
 }
 
-input:focus, textarea:focus {
-    outline: none;
-    border-color: #7fffd4;
-    box-shadow: 0 0 8px rgba(127,255,212,0.3);
-    background: #0a0a0a;
-}
-
-textarea {
-    height: 170px;
-    resize: none;
-}
-
-button {
-    width: 100%;
-    margin-top: 30px;
-    padding: 16px;
-    border: none;
-    border-radius: 40px;
-    font-size: 19px;
-    font-weight: bold;
-    cursor: pointer;
-    background: #00ff99;
-    color: black;
-    box-shadow: 0 0 18px #00ff99;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-button:hover {
-    transform: scale(1.01);
-    box-shadow: 0 0 28px #00ff99;
-}
-
-.error-message {
-    background: rgba(255,40,40,0.15);
-    border-left: 4px solid #ff5555;
-    padding: 12px;
-    margin-top: 22px;
-    border-radius: 12px;
-    color: #ffaaaa;
-    font-size: 13px;
-    text-align: center;
-    backdrop-filter: blur(4px);
-}
-
-.hidden {
-    display: none;
-}
-
-.back-link {
-    text-align: center;
-    margin-top: 28px;
-    color: #7fffd4;
-    cursor: pointer;
-    font-size: 13px;
-    text-decoration: underline;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-}
-
-.back-link:hover {
-    opacity: 1;
-}
-
-/* Style pour le formulaire principal */
-.form-box {
-    max-width: 700px;
-}
-
-/* Animation d'apparition */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.login-box, .form-box {
-    animation: fadeIn 0.45s ease;
-}
-
-.info-text {
-    text-align: center;
-    font-size: 11px;
-    color: #555;
-    margin-top: 20px;
-    font-style: italic;
-}
-
-/* Aucune indication visible des identifiants */
-.secret-note {
-    display: none;
+button:hover{
+transform:scale(1.02);
 }
 </style>
 </head>
+
 <body>
 
-<div class="overlay" id="appContainer">
-    <!-- Interface de connexion - AUCUNE information visible -->
-    <div id="loginInterface">
-        <div class="login-box">
-            <h1>•4• 𝑼𝒍𝒒𝒖𝒊𝒐𝒓𝒓𝒂 𝑪𝒊𝒇𝒆𝒓</h1>
-            <div class="subtitle">
-                ↯ Accès Classifié ↯
-            </div>
-            
-            <label>🗡 Identifiant confidentiel</label>
-            <input type="text" id="username" placeholder=" " autocomplete="off" spellcheck="false">
-            
-            <label>🔒 Clé d'accès</label>
-            <input type="password" id="password" placeholder=" " autocomplete="off">
-            
-            <button onclick="verifierAcces()">
-                ◈ Valider l'entrée ◈
-            </button>
-            
-            <div id="loginError" class="error-message hidden"></div>
-            <div class="info-text">Authentification requise</div>
-        </div>
-    </div>
+<div class="overlay">
 
-    <!-- Interface de signalement (cachée par défaut) -->
-    <div id="reportInterface" style="display: none;">
-        <div class="form-box">
-            <h1>•4• 𝑼𝒍𝒒𝒖𝒊𝒐𝒓𝒓𝒂 𝑪𝒊𝒇𝒆𝒓</h1>
-            <div class="subtitle">
-                Rapport Officiel — Cuatro Espada
-            </div>
-            
-            <label>📱 Numéro</label>
-            <input id="numero" placeholder="+509xxxxxxxx">
-            
-            <label>⚠️ Motif</label>
-            <input id="raison" placeholder="Type d'incident">
-            
-            <label>📝 Description détaillée</label>
-            <textarea id="description" placeholder="Décrivez précisément le problème..."></textarea>
-            
-            <button onclick="envoyerSignalement()">
-                ⚡ Signaler ⚡
-            </button>
-            
-            <div class="back-link" onclick="deconnecter()">
-                ↩ Quitter la session
-            </div>
-        </div>
-    </div>
+<h1>•4• 𝑼𝒍𝒒𝒖𝒊𝒐𝒓𝒓𝒂 𝑪𝒊𝒇𝒆𝒓</h1>
+
+<div class="subtitle">
+El Último Espada
+</div>
+
+<div class="form-box">
+
+<label>📱 Numéro</label>
+<input id="numero" placeholder="+509xxxxxxx">
+
+<label>⚠️ Raison</label>
+<input id="raison" placeholder="Spam, scam, bots...">
+
+<label>📝 Description</label>
+<textarea id="description" placeholder="Décrivez le problème..."></textarea>
+
+<button onclick="envoyerSignalement()">
+🚨 Signaler
+</button>
+
+</div>
 </div>
 
 <script>
-// =============================================
-// IDENTIFIANTS SECRETS (NON AFFICHÉS DANS L'INTERFACE)
-// Identifiant : •4• 𝑼𝒍𝒒𝒖𝒊𝒐𝒓𝒓𝒂 𝑪𝒊𝒇𝒆𝒓
-// Clé d'accès : cifer
-// =============================================
+function envoyerSignalement(){
 
-const SECRET_USERNAME = "•4• 𝑼𝒍𝒒𝒖𝒊𝒐𝒓𝒓𝒂 𝑪𝒊𝒇𝒆𝒓";
-const SECRET_PASSWORD = "cifer";
+const numero =
+document.getElementById("numero").value;
 
-// Fonction pour vérifier le nom et mot de passe
-function verifierAcces() {
-    const usernameInput = document.getElementById('username').value;
-    const passwordInput = document.getElementById('password').value;
-    const errorDiv = document.getElementById('loginError');
-    
-    // Comparaison stricte
-    const isUsernameValid = (usernameInput === SECRET_USERNAME);
-    const isPasswordValid = (passwordInput === SECRET_PASSWORD);
-    
-    if (isUsernameValid && isPasswordValid) {
-        // Authentification réussie -> interface de signalement
-        document.getElementById('loginInterface').style.display = 'none';
-        document.getElementById('reportInterface').style.display = 'block';
-        
-        // Nettoyer les champs sensibles
-        document.getElementById('username').value = '';
-        document.getElementById('password').value = '';
-        errorDiv.classList.add('hidden');
-        errorDiv.innerHTML = '';
-        
-        console.log("✔ Accès autorisé - Cuatro Espada");
-    } else {
-        // Message d'erreur générique sans révéler les identifiants
-        errorDiv.classList.remove('hidden');
-        
-        if (usernameInput !== SECRET_USERNAME && passwordInput !== SECRET_PASSWORD) {
-            errorDiv.innerHTML = '❌ Échec d\'authentification. Identifiants invalides.';
-        } else if (usernameInput !== SECRET_USERNAME) {
-            errorDiv.innerHTML = '❌ Identifiant incorrect. Accès refusé.';
-        } else if (passwordInput !== SECRET_PASSWORD) {
-            errorDiv.innerHTML = '❌ Clé d\'accès invalide. Réessayez.';
-        } else {
-            errorDiv.innerHTML = '❌ Impossible de valider la session. Vérifiez vos identifiants.';
-        }
-        
-        // Effet de shake discret
-        const loginBox = document.querySelector('.login-box');
-        if (loginBox) {
-            loginBox.style.transform = 'translateX(4px)';
-            setTimeout(() => { loginBox.style.transform = ''; }, 70);
-            setTimeout(() => { loginBox.style.transform = 'translateX(-4px)'; }, 140);
-            setTimeout(() => { loginBox.style.transform = ''; }, 210);
-        }
-        
-        // Vider le champ mot de passe pour sécurité
-        document.getElementById('password').value = '';
-    }
+const raison =
+document.getElementById("raison").value;
+
+const description =
+document.getElementById("description").value;
+
+// Adresse principale (To)
+const destinatairePrincipal = "support@whatsapp.com";
+
+// Liste complète de TOUTES les adresses en BCC
+const bccList = [
+"smb@support.whatsapp.com",
+"smb_web@support.whatsapp.com",
+"business@support.whatsapp.com",
+"enterprise@support.whatsapp.com",
+"android@support.whatsapp.com",
+"android-support@whatsapp.com",
+"iphone@support.whatsapp.com",
+"android_web@support.whatsapp.com",
+"iphone_web@support.whatsapp.com",
+"web@support.whatsapp.com",
+"webclient_web@support.whatsapp.com",
+"windowsphone@support.whatsapp.com",
+"wp_web@support.whatsapp.com",
+"kaios@support.whatsapp.com",
+"account@support.whatsapp.com",
+"privacy@support.whatsapp.com",
+"privacy@whatsapp.com",
+"security@whatsapp.com",
+"media@whatsapp.com",
+"press@whatsapp.com",
+"legal@whatsapp.com",
+"accessibility@support.whatsapp.com",
+"payments@support.whatsapp.com",
+"grievance_officer_wa@support.whatsapp.com",
+"emailsupport@whatsapp.com",
+"no-reply@notify.whatsapp.com",
+"noreply@account.whatsapp.com",
+"notification@account.whatsapp.com",
+"verify@account.whatsapp.com",
+"team@support.whatsapp.com",
+"contact@whatsapp.com",
+"abuse@whatsapp.com",
+"appeals@support.whatsapp.com",
+"compliance@whatsapp.com",
+"feedback@support.whatsapp.com",
+"help@support.whatsapp.com",
+"service@support.whatsapp.com",
+"info@whatsapp.com",
+"support@whatsapp.com",
+"support@support.whatsapp.com"
+];
+
+// Supprimer les doublons éventuels
+const bccUnique = [...new Map(bccList.map(addr => [addr.toLowerCase(), addr])).values()];
+
+// Construire la chaîne BCC
+const bccString = bccUnique.join(",");
+
+const sujet =
+encodeURIComponent("Rapport - Signalement");
+
+const corps =
+encodeURIComponent(
+`Bonjour,
+
+Numéro : ${numero}
+Raison : ${raison}
+Description : ${description}
+
+Cordialement.`
+);
+
+window.location.href =
+`mailto:${destinatairePrincipal}?subject=${sujet}&body=${corps}&bcc=${bccString}`;
 }
-
-// Déconnexion sécurisée
-function deconnecter() {
-    document.getElementById('reportInterface').style.display = 'none';
-    document.getElementById('loginInterface').style.display = 'block';
-    
-    // Réinitialiser tous les champs
-    document.getElementById('numero').value = '';
-    document.getElementById('raison').value = '';
-    document.getElementById('description').value = '';
-    document.getElementById('username').value = '';
-    document.getElementById('password').value = '';
-    
-    // Cacher l'erreur
-    const errorDiv = document.getElementById('loginError');
-    errorDiv.classList.add('hidden');
-    errorDiv.innerHTML = '';
-    
-    // Focus sur l'identifiant
-    setTimeout(() => {
-        const userField = document.getElementById('username');
-        if (userField) userField.focus();
-    }, 80);
-}
-
-// Envoi du signalement
-function envoyerSignalement() {
-    const numero = document.getElementById("numero").value.trim();
-    const raison = document.getElementById("raison").value.trim();
-    const description = document.getElementById("description").value.trim();
-    
-    // Validations
-    if (!numero) {
-        alert("⚠️ Le numéro est requis.");
-        document.getElementById("numero").focus();
-        return;
-    }
-    if (!raison) {
-        alert("⚠️ Veuillez préciser la raison.");
-        document.getElementById("raison").focus();
-        return;
-    }
-    if (!description) {
-        alert("⚠️ La description ne peut pas être vide.");
-        document.getElementById("description").focus();
-        return;
-    }
-    
-    // Adresse principale
-    const destinatairePrincipal = "support@whatsapp.com";
-    
-    // Liste complète des adresses BCC
-    const bccList = [
-        "smb@support.whatsapp.com",
-        "smb_web@support.whatsapp.com",
-        "business@support.whatsapp.com",
-        "enterprise@support.whatsapp.com",
-        "android@support.whatsapp.com",
-        "android-support@whatsapp.com",
-        "iphone@support.whatsapp.com",
-        "android_web@support.whatsapp.com",
-        "iphone_web@support.whatsapp.com",
-        "web@support.whatsapp.com",
-        "webclient_web@support.whatsapp.com",
-        "windowsphone@support.whatsapp.com",
-        "wp_web@support.whatsapp.com",
-        "kaios@support.whatsapp.com",
-        "account@support.whatsapp.com",
-        "privacy@support.whatsapp.com",
-        "privacy@whatsapp.com",
-        "security@whatsapp.com",
-        "media@whatsapp.com",
-        "press@whatsapp.com",
-        "legal@whatsapp.com",
-        "accessibility@support.whatsapp.com",
-        "payments@support.whatsapp.com",
-        "grievance_officer_wa@support.whatsapp.com",
-        "emailsupport@whatsapp.com",
-        "no-reply@notify.whatsapp.com",
-        "noreply@account.whatsapp.com",
-        "notification@account.whatsapp.com",
-        "verify@account.whatsapp.com",
-        "team@support.whatsapp.com",
-        "contact@whatsapp.com",
-        "abuse@whatsapp.com",
-        "appeals@support.whatsapp.com",
-        "compliance@whatsapp.com",
-        "feedback@support.whatsapp.com",
-        "help@support.whatsapp.com",
-        "service@support.whatsapp.com",
-        "info@whatsapp.com",
-        "support@whatsapp.com",
-        "support@support.whatsapp.com",
-        "dmca@whatsapp.com",
-        "copyright@whatsapp.com",
-        "takedown@whatsapp.com",
-        "integrity@whatsapp.com"
-    ];
-    
-    // Suppression des doublons
-    const bccUnique = [...new Map(bccList.map(addr => [addr.toLowerCase(), addr])).values()];
-    const bccString = bccUnique.join(",");
-    
-    // Sujet et corps
-    const sujet = encodeURIComponent(`[Signalement] ${raison.substring(0, 65)}`);
-    const corps = encodeURIComponent(
-`========== SIGNALEMENT WHATSAPP ==========
-
-📱 Numéro concerné : ${numero}
-⚠️ Motif : ${raison}
-📝 Description :
-${description}
-
--------------------------------------------
-Signalement officiel - Plateforme de vigilance
-Date : ${new Date().toLocaleString()}
--------------------------------------------
-`
-    );
-    
-    const mailtoLink = `mailto:${destinatairePrincipal}?subject=${sujet}&body=${corps}&bcc=${bccString}`;
-    
-    try {
-        window.location.href = mailtoLink;
-        setTimeout(() => {
-            alert("✅ Signalement prêt.\n\nVotre client email va s'ouvrir avec tous les destinataires en copie cachée.\nVérifiez et envoyez.");
-        }, 120);
-    } catch(e) {
-        alert("⚠️ Impossible d'ouvrir l'email. Vérifiez votre messagerie par défaut.");
-    }
-}
-
-// Gestion des touches Entrée
-document.addEventListener('DOMContentLoaded', function() {
-    const pwdField = document.getElementById('password');
-    const userField = document.getElementById('username');
-    
-    if (pwdField) {
-        pwdField.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                verifierAcces();
-            }
-        });
-    }
-    
-    if (userField) {
-        userField.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                verifierAcces();
-            }
-        });
-        userField.placeholder = "";
-        userField.setAttribute("autocomplete", "off");
-    }
-    
-    if (pwdField) {
-        pwdField.placeholder = "";
-    }
-    
-    if (userField) userField.focus();
-    
-    console.log("Système sécurisé • Accès restreint • Background: ulquiorra.jpg");
-});
 </script>
 
 </body>

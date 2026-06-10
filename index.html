@@ -17,15 +17,42 @@ body {
     background: url('ulquiorra.jpg') center center/cover no-repeat fixed;
     min-height: 100vh;
     color: white;
+    position: relative;
+}
+
+/* Fallback au cas où l'image ne charge pas */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a2a;
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('ulquiorra.jpg') center center/cover no-repeat fixed;
+    z-index: -1;
+    opacity: 1;
 }
 
 .overlay {
-    background: rgba(0,0,0,.8);
+    background: rgba(0,0,0,.75);
     min-height: 100vh;
     padding: 30px 15px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 }
 
 /* Interface de connexion */
@@ -39,6 +66,7 @@ body {
     padding: 40px 30px;
     backdrop-filter: blur(12px);
     transition: all 0.3s ease;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
 h1 {
@@ -171,6 +199,7 @@ button:hover {
     font-style: italic;
 }
 
+/* Aucune indication visible des identifiants */
 .secret-note {
     display: none;
 }
@@ -232,7 +261,7 @@ button:hover {
 
 <script>
 // =============================================
-// IDENTIFIANTS SECRETS (NON AFFICHÉS)
+// IDENTIFIANTS SECRETS (NON AFFICHÉS DANS L'INTERFACE)
 // Identifiant : •4• 𝑼𝒍𝒒𝒖𝒊𝒐𝒓𝒓𝒂 𝑪𝒊𝒇𝒆𝒓
 // Clé d'accès : cifer
 // =============================================
@@ -240,7 +269,7 @@ button:hover {
 const SECRET_USERNAME = "•4• 𝑼𝒍𝒒𝒖𝒊𝒐𝒓𝒓𝒂 𝑪𝒊𝒇𝒆𝒓";
 const SECRET_PASSWORD = "cifer";
 
-// Fonction pour vérifier le nom et mot de passe (sans aucun affichage des identifiants)
+// Fonction pour vérifier le nom et mot de passe
 function verifierAcces() {
     const usernameInput = document.getElementById('username').value;
     const passwordInput = document.getElementById('password').value;
@@ -452,7 +481,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (userField) userField.focus();
     
-    console.log("Système sécurisé • Accès restreint");
+    console.log("Système sécurisé • Accès restreint • Background: ulquiorra.jpg");
 });
 </script>
 
